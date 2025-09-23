@@ -3,18 +3,30 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [],
   "author": "",
+  "imports": {
+    "#rocketh": "./rocketh.js",
+    "#generated/*.js": "./generated/*.js"
+  },
   "license": "ISC",
   "type": "module",
   "devDependencies": {
     "@chainlink/contracts-ccip": "^1.6.1",
+    "@chainlink/local": "^0.2.5-beta.0",
     "@nomicfoundation/hardhat-ignition": "^3.0.3",
     "@nomicfoundation/hardhat-toolbox-mocha-ethers": "^3.0.0",
+    "@nomicfoundation/hardhat-toolbox-viem": "^5.0.0",
     "@openzeppelin/contracts": "^5.4.0",
+    "@rocketh/deploy": "^0.14.2",
+    "@rocketh/diamond": "^0.14.3",
+    "@rocketh/doc": "^0.14.9",
+    "@rocketh/export": "^0.14.10",
+    "@rocketh/proxy": "^0.14.6",
+    "@rocketh/read-execute": "^0.14.3",
+    "@rocketh/signer": "^0.15.0",
+    "@rocketh/verifier": "^0.14.9",
+    "@rocketh/viem": "^0.15.0",
     "@types/chai": "^4.3.20",
     "@types/chai-as-promised": "^8.0.2",
     "@types/mocha": "^10.0.10",
@@ -23,7 +35,12 @@
     "ethers": "^6.15.0",
     "forge-std": "github:foundry-rs/forge-std#v1.9.4",
     "hardhat": "^3.0.6",
+    "hardhat-deploy": "^2.0.0-next.45",
     "mocha": "^11.7.2",
+    "rocketh": "^0.14.8",
     "typescript": "~5.8.0"
+  },
+  "dependencies": {
+    "pnpm": "^10.17.0"
   }
 }

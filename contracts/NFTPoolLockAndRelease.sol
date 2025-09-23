@@ -61,6 +61,8 @@ contract NFTPoolLockAndRelease is CCIPReceiver, OwnerIsCreator {
     /// @notice Constructor initializes the contract with the router address.
     /// @param _router The address of the router contract.
     /// @param _link The address of the link contract.
+    // router and link 来自chainlink。测试使用chainlink local
+    // 参考：https://docs.chain.link/chainlink-local/build/ccip/hardhat/local-simulator
     constructor(
         address _router,
         address _link,
