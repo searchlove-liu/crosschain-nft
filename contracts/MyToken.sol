@@ -35,7 +35,6 @@ contract MyToken is
     }
 
     // The following functions are overrides required by Solidity.
-
     function _update(
         address to,
         uint256 tokenId,

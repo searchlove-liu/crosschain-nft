@@ -13,6 +13,7 @@ export default deployScript(
         });
     },
     // finally you can pass tags and dependencies
-    { tags: ["all", "mytoken"] }
+    { tags: ["mytoken"] }
 );
 
+// npx hardhat deploy --tags mytoken --network localhost

@@ -120,6 +120,10 @@ contract NFTPoolLockAndRelease is CCIPReceiver, OwnerIsCreator {
         return messageId;
     }
 
+    // contract a : func1 -> msg.sender
+    // contract b : func2 -> msg.sender
+    // call func1 of contract a , msg.sender = user's address
+    // call func2 ,then func2 call func1 , func1's msg.sender = contract b's address 
     function lockAndSendNFT(
         uint256 tokenId,
         address newOwner,
@@ -130,6 +134,10 @@ contract NFTPoolLockAndRelease is CCIPReceiver, OwnerIsCreator {
         // transfer NFT to this address to lock the NFT
         // transfer NFT of msg.sender to this contract
 
+        // transfer NFT from msg.sender to address(this)
+        // because NFT belong to msg.sender,and this function is called by "this"——NFTPoolLockAndRelease contract,
+        // so "this" need permission to handle NFT of msg.sender（当前合约需要获取操作NFT的权限）。
+        // get permission：nft.approve(to, tokenId);
         nft.transferFrom(msg.sender, address(this), tokenId);
 
         bytes memory payload = abi.encode(tokenId, newOwner);

@@ -1,3 +1,4 @@
+![alt text](image.png)
 #### sepolia部署并验证合约
 ```shell
 npx hardhat run --build-profile default scripts/deploy_MyToken.ts --network sepolia
@@ -42,7 +43,20 @@ export default deployScript(
 #### 本地部署并验证合约
 ``` shell
 npx hardhat node
-npx hardhat run scripts/deploy_MyToken.ts --network localhost
+npx hardhat compile
+npx hardhat run scripts/deploy_MyToken.ts  --network localhost
 ```
+#### hardhat-deploy 部署合约
+```shell
+npx hardhat node
+npx hardhat compile
+npx hardhat deploy --tags srcchain --network localhost
+```
+#### Running Tests
 
+To run all the tests in the project, execute the following command:
+
+```shell
+npx hardhat test
+```
 

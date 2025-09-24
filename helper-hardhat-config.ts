@@ -1,5 +1,7 @@
-const TOKEN_NAME = "mydog"
-const TOKEN_SYMBLE = "mydog"
+const TOKEN_NAME = "MyToken"
+const TOKEN_SYMBLE = "MT"
+export const WRAP_TOKEN_NAME = "WMyToken"
+export const WARAP_TOKEN_SYMBLE = "WMT"
 const networkConfig = new Map([
     [11155111, "sepolia"],
     [31337, "hardhat"]
