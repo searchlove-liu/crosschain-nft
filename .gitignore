@@ -18,3 +18,7 @@
 
 # Hardhat coverage reports
 /coverage
+
+# SEPOLIA_RPC_URL message
+/.env
+

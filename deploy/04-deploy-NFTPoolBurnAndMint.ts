@@ -1,21 +1,29 @@
 // we import what we need from the #rocketh alias, see ../rocketh.ts
 import { deployScript, artifacts } from "#rocketh";
+import { developmentChains, networkConfig } from "./../helper-hardhat-config.ts"
 
 // 参考rocketh：https://github.com/wighawag/rocketh
 // 使用Deployment with Dependencies
 export default deployScript(
     async ({ deploy, namedAccounts, get, viem }) => {
-        const { deployer } = namedAccounts;
         // 通过下面方式也可以获取地址
         // const NFTAddress = deployments["FundMe"].address
         const WNFTAddress = get("WrappedMyToken").address;
-        // const mockInstance = viem.getContract("MyCCIPLocalSimulator");
-        const mockInstance = viem.getWritableContract("MyCCIPLocalSimulator");
-        const returnData = await mockInstance.read.configuration();
-        const ccipConfig = returnData as any[];
+        const chainId = await viem.publicClient.getChainId();
 
-        const destinationRouter = ccipConfig[2];
-        const linkToken = ccipConfig[4];
+        const { deployer } = namedAccounts;
+        let destinationRouter;
+        let linkToken;
+        if (developmentChains.includes(chainId)) {
+            const mockInstance = viem.getContract("MyCCIPLocalSimulator");
+            const returnData = await mockInstance.read.configuration();
+            const ccipConfig = returnData as any[];
+            destinationRouter = ccipConfig[2];
+            linkToken = ccipConfig[4];
+        } else {
+            linkToken = networkConfig.get(chainId)?.linkToken
+            destinationRouter = networkConfig.get(chainId)?.router
+        }
 
         await deploy("NFTPoolBurnAndMint", {
             account: deployer,

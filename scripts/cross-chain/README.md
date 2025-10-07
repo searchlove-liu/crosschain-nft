@@ -1,0 +1,5 @@
+#### 使用脚本做跨链测试：
+1、sepolia网络中部署MyToken和NFTPoolLockAndRelease
+2、amoy网络中部署WrappedMyToken和NFTPoolBurnAndMint
+3、sepolia中某个地址使用MyToken合约创建一个NFT，
+4、通过跨链转到amoy中WrappedMyToken

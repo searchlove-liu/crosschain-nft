@@ -1,8 +1,16 @@
 ![alt text](image.png)
-#### sepolia部署并验证合约
+#### sepolia部署
 ```shell
 npx hardhat run --build-profile default scripts/deploy_MyToken.ts --network sepolia
 ```
+
+#### 简单脚本本地部署合约
+``` shell
+npx hardhat node
+npx hardhat compile
+npx hardhat run scripts/deploy_MyToken.ts  --network localhost
+```
+
 #### 使用hardhat-deploy部署合约脚本
 ``` typescript
 // we import what we need from the #rocketh alias, see ../rocketh.ts
@@ -40,18 +48,21 @@ export default deployScript(
 );
 ```
 
-#### 本地部署并验证合约
-``` shell
-npx hardhat node
-npx hardhat compile
-npx hardhat run scripts/deploy_MyToken.ts  --network localhost
-```
 #### hardhat-deploy 部署合约
+##### 启动本地网络部署，更加直观
 ```shell
 npx hardhat node
 npx hardhat compile
-npx hardhat deploy --tags srcchain --network localhost
+npx hardhat deploy --tags xxx --network localhost
+tags不指定，将部署所有
 ```
+##### 直接本地部署
+```shell
+npx hardhat compile
+npx hardhat deploy --tags xxx 
+tags不指定，将部署所有
+```
+
 #### Running Tests
 
 To run all the tests in the project, execute the following command:
@@ -60,3 +71,29 @@ To run all the tests in the project, execute the following command:
 npx hardhat test
 ```
 
+#### 在测试网上部署
+##### 部署所有合约
+``` shell
+npx hardhat deploy --build-profile default --network sepolia
+npx hardhat deploy --build-profile default --network amoy
+```
+##### 部署tags对应合约
+``` shell
+npx hardhat deploy --tags xxx --build-profile default --network sepolia
+npx hardhat deploy --tags xxx --build-profile default --network amoy
+```
+
+如果某些脚本已经部署，再次执行命令将不执行部署脚本.
+需要重新部署合约，需要删除deployments中想要重新部署的合约对应的文件。
+
+#### .env 存储信息
+SEPOLIA_RPC_URL
+
+##### env使用
+
+``` shell
+npm install -D dotenv
+import "dotenv/config"
+// 导入env中的信息
+const apiKey = process.env.ETHERSCAN_API_KEY
+```

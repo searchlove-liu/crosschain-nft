@@ -3,6 +3,7 @@ import { network } from 'hardhat';
 import { setupFixtures } from './utils/index.ts';
 import { expect } from 'chai';
 import { ethers } from "ethers"
+// import hre  from "hardhat";
 
 const { provider, networkHelpers } = await network.connect();
 const { deployAll } = setupFixtures(provider);
@@ -12,7 +13,11 @@ const { env, MyToken, WrappedMyToken, MyCCIPLocalSimulator, NFTPoolLockAndReleas
 describe("source chain ->  dest chain", async () => {
 
     it("test if user can mint a nft from nft contract successfully", async () => {
-        await env.execute(MyToken, { functionName: "safeMint", args: [namedAccounts.deployer], account: namedAccounts.deployer })
+        await env.execute(MyToken, {
+            functionName: "safeMint",
+            args: [namedAccounts.deployer],
+            account: namedAccounts.deployer
+        })
         // 查看第1个NFT的所有者
         const owner = await env.read(MyToken, {
             functionName: "ownerOf",

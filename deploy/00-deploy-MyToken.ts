@@ -3,10 +3,10 @@ import { deployScript, artifacts } from "#rocketh";
 import { TOKEN_NAME, TOKEN_SYMBLE } from "../helper-hardhat-config.ts"
 
 export default deployScript(
-    async ({ deploy, namedAccounts }) => {
+    async ({ deploy, namedAccounts, }) => {
         const { deployer } = namedAccounts;
 
-        await deploy("MyToken", {
+        const MyTokenDeploy = await deploy("MyToken", {
             account: deployer,
             artifact: artifacts.MyToken,
             args: [TOKEN_NAME, TOKEN_SYMBLE],
