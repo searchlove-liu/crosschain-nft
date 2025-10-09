@@ -51,10 +51,11 @@ export default deployScript(
 #### hardhat-deploy 部署合约
 ##### 启动本地网络部署，更加直观
 ```shell
-npx hardhat node
-npx hardhat compile
-npx hardhat deploy --tags xxx --network localhost
+1、npx hardhat node
+2、npx hardhat compile
+3、npx hardhat deploy --tags xxx --network localhost
 tags不指定，将部署所有
+4、验证部署的所有合约：pnpm rocketh-verify -e sepolia etherscan
 ```
 ##### 直接本地部署
 ```shell
@@ -76,11 +77,13 @@ npx hardhat test
 ``` shell
 npx hardhat deploy --build-profile default --network sepolia
 npx hardhat deploy --build-profile default --network amoy
+验证部署的所有合约：pnpm rocketh-verify -e sepolia etherscan
 ```
 ##### 部署tags对应合约
 ``` shell
 npx hardhat deploy --tags xxx --build-profile default --network sepolia
 npx hardhat deploy --tags xxx --build-profile default --network amoy
+验证部署的所有合约：pnpm rocketh-verify -e sepolia etherscan
 ```
 
 如果某些脚本已经部署，再次执行命令将不执行部署脚本.

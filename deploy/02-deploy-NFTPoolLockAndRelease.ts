@@ -40,4 +40,5 @@ export default deployScript(
     { tags: ["sourcechain", "all"], dependencies: ['mytoken', "mycciplocalsimulator"] }
 );
 
+// npx hardhat compile
 // npx hardhat deploy --tags sourcechain --network localhost

@@ -1,0 +1,109 @@
+{
+  "address": "0x5fbdb2315678afecb367f032d93f642f64180aa3",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "retrieve",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "num",
+          "type": "uint256"
+        }
+      ],
+      "name": "store",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "contractName": "Storage",
+  "sourceName": "contracts/Storage.sol",
+  "bytecode": "0x6080604052348015600e575f5ffd5b506101298061001c5f395ff3fe6080604052348015600e575f5ffd5b50600436106030575f3560e01c80632e64cec11460345780636057361d14604e575b5f5ffd5b603a6066565b60405160459190608d565b60405180910390f35b606460048036038101906060919060cd565b606e565b005b5f5f54905090565b805f8190555050565b5f819050919050565b6087816077565b82525050565b5f602082019050609e5f8301846080565b92915050565b5f5ffd5b60af816077565b811460b8575f5ffd5b50565b5f8135905060c78160a8565b92915050565b5f6020828403121560df5760de60a4565b5b5f60ea8482850160bb565b9150509291505056fea2646970667358221220f577c77558b98e2b4644acb8183b4ebedb03cf144db001549fe90e7029fbf9b464736f6c634300081c0033",
+  "deployedBytecode": "0x6080604052348015600e575f5ffd5b50600436106030575f3560e01c80632e64cec11460345780636057361d14604e575b5f5ffd5b603a6066565b60405160459190608d565b60405180910390f35b606460048036038101906060919060cd565b606e565b005b5f5f54905090565b805f8190555050565b5f819050919050565b6087816077565b82525050565b5f602082019050609e5f8301846080565b92915050565b5f5ffd5b60af816077565b811460b8575f5ffd5b50565b5f8135905060c78160a8565b92915050565b5f6020828403121560df5760de60a4565b5b5f60ea8482850160bb565b9150509291505056fea2646970667358221220f577c77558b98e2b4644acb8183b4ebedb03cf144db001549fe90e7029fbf9b464736f6c634300081c0033",
+  "linkReferences": {},
+  "deployedLinkReferences": {},
+  "immutableReferences": {},
+  "inputSourceName": "project/contracts/Storage.sol",
+  "devdoc": {
+    "custom:dev-run-script": "./scripts/deploy_with_ethers.ts",
+    "details": "Store & retrieve value in a variable",
+    "kind": "dev",
+    "methods": {
+      "retrieve()": {
+        "details": "Return value",
+        "returns": {
+          "_0": "value of 'number'"
+        }
+      },
+      "store(uint256)": {
+        "details": "Store value in variable",
+        "params": {
+          "num": "value to store"
+        }
+      }
+    },
+    "title": "Storage",
+    "version": 1
+  },
+  "evm": {
+    "gasEstimates": {
+      "creation": {
+        "codeDepositCost": "59400",
+        "executionCost": "109",
+        "totalCost": "59509"
+      },
+      "external": {
+        "retrieve()": "2409",
+        "store(uint256)": "22514"
+      }
+    }
+  },
+  "metadata": "{\"compiler\":{\"version\":\"0.8.28+commit.7893614a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"retrieve\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"num\",\"type\":\"uint256\"}],\"name\":\"store\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"custom:dev-run-script\":\"./scripts/deploy_with_ethers.ts\",\"details\":\"Store & retrieve value in a variable\",\"kind\":\"dev\",\"methods\":{\"retrieve()\":{\"details\":\"Return value\",\"returns\":{\"_0\":\"value of 'number'\"}},\"store(uint256)\":{\"details\":\"Store value in variable\",\"params\":{\"num\":\"value to store\"}}},\"title\":\"Storage\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project/contracts/Storage.sol\":\"Storage\"},\"evmVersion\":\"cancun\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project/contracts/Storage.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n\\npragma solidity >=0.8.2 <0.9.0;\\n\\n/**\\n * @title Storage\\n * @dev Store & retrieve value in a variable\\n * @custom:dev-run-script ./scripts/deploy_with_ethers.ts\\n */\\ncontract Storage {\\n    uint256 number;\\n\\n    /**\\n     * @dev Store value in variable\\n     * @param num value to store\\n     */\\n    function store(uint256 num) public {\\n        number = num;\\n    }\\n\\n    /**\\n     * @dev Return value\\n     * @return value of 'number'\\n     */\\n    function retrieve() public view returns (uint256) {\\n        return number;\\n    }\\n}\\n\",\"keccak256\":\"0x137947a7adffe65f036c60363310e66cbc3d2da085497073b63de4fe8d692e4a\",\"license\":\"MIT\"}},\"version\":1}",
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 4,
+        "contract": "project/contracts/Storage.sol:Storage",
+        "label": "number",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_uint256"
+      }
+    ],
+    "types": {
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "argsData": "0x",
+  "transaction": {
+    "hash": "0x994977e34cb50866efb378fb262856512f2a660b069837337f9f379543cf73fd",
+    "nonce": "0x0",
+    "origin": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+  },
+  "receipt": {
+    "blockHash": "0x8ecea85f6c5b7045b4767f6e7ae9706934e663e32ef516df72795ebff646929f",
+    "blockNumber": "0x1",
+    "transactionIndex": "0x0"
+  }
+}

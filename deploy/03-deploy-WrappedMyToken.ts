@@ -16,4 +16,5 @@ export default deployScript(
     { tags: ["wnft"] }
 );
 
+// npx hardhat compile
 // npx hardhat deploy --tags wnft --network localhost

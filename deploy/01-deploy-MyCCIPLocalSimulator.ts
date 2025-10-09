@@ -20,4 +20,5 @@ export default deployScript(
     { tags: ["mycciplocalsimulator"] }
 );
 
+// npx hardhat compile
 // npx hardhat deploy --tags mycciplocalsimulator --network localhost

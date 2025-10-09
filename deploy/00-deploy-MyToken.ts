@@ -16,5 +16,6 @@ export default deployScript(
     { tags: ["mytoken"] }
 );
 
+// npx hardhat compile
 // npx hardhat deploy --tags mytoken --network localhost
 // npx hardhat deploy --tags mytoken --network sepolia

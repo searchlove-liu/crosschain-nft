@@ -41,11 +41,13 @@
 
 
 // ---------------------------------------------------------流程
-// 1、部署合约
+// 1、部署合约及验证
 // MyToken ：npx hardhat deploy --tags mytoken --network sepolia
 // NFTPoolLockAndRelease : npx hardhat deploy --tags sourcechain --network sepolia
 // WrappedMyToken ：npx hardhat deploy --tags wnft --network amoy
 // NFTPoolBurnAndMint：npx hardhat deploy --tags destchain --network amoy
+// 验证sepolia中所有部署合约：pnpm rocketh-verify -e sepolia etherscan  
+// 验证amoy中所有部署合约：pnpm rocketh-verify -e amoy etherscan
 
 // 2、铸币
 // npx hardhat deploy --tags mint-nft --network sepolia

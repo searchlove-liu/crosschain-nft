@@ -41,4 +41,5 @@ export default deployScript(
     { tags: ["destchain", "all"], dependencies: ['wnft', "mycciplocalsimulator"] }
 );
 
+// npx hardhat compile
 // npx hardhat deploy --tags destchain --network localhost
