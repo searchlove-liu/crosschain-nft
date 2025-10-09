@@ -17,3 +17,4 @@ export default deployScript(
 );
 
 // npx hardhat deploy --tags mytoken --network localhost
+// npx hardhat deploy --tags mytoken --network sepolia

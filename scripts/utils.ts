@@ -61,7 +61,7 @@ async function interactiveScript() {
 interface lockAndCrossParms {
     chainselector: string,
     receiver: string,
-    tokeId: number,
+    tokeId: bigint,
 }
 
 // get parameters of deploy/cross-chain/lock-and-cross.ts参数
@@ -74,22 +74,22 @@ interface lockAndCrossParms {
 // params:可以处理id的范围tokenidStart---tokenIdEnd
 export async function getLockAndCrossParmV1(env: EnhancedEnvironment, tokenidStart: number, tokenIdEnd: number): Promise<lockAndCrossParms> {
     // 参数：chainselector，chain selector of dest chain
-    //  receiver: receiver address on dest chain
+    //  receiver: receiver address on dest chain（NFTPoolBurnAndMint address）
     //  tokenid: token ID to be crossed chain
 
     let parameter: lockAndCrossParms = {
         chainselector: "",
         receiver: "",
-        tokeId: 0
+        tokeId: 0n
     }
     const tokenIdMessage = `Token ID to be crossed chain. Within the range of  ${tokenidStart} to ${tokenIdEnd}:`
     const answers = await inquirer.prompt([
         {
             type: "input",
             name: "receiver",
-            message: "Receiver address on dest chain:",
+            message: "Receiver address on dest chain(NFTPoolBurnAndMint address),it can be obtained by running `npx hardhat deploy --tags nftbmAddr --network amoy': ",
             validate: (input: string) =>
-                (input.length !== 0 && input.trim().length !== 0) || "Receiver is necessary ,it can obtained by running `npx hardhat deploy --tags nftbm --network amoy'"
+                (input.length !== 0 && input.trim().length !== 0) || "Receiver(NFTPoolBurnAndMint address) is necessary ,it can be obtained by running `npx hardhat deploy --tags nftbmAddr --network amoy'"
         },
         {
             type: "number",
@@ -109,6 +109,49 @@ export async function getLockAndCrossParmV1(env: EnhancedEnvironment, tokenidSta
     return parameter
 }
 
+interface BurnAndCrossParms {
+    chainselector: string,
+    receiver: string,
+    tokeId: bigint,
+}
+// get parameters of deploy/cross-chain/burn-and-cross.ts参数
+// 这个函数的作用：从外部获取代码执行时需要的参数
+// params:可以处理id的范围tokenidStart---tokenIdEnd
+export async function getBurnAndCrossParmV1(env: EnhancedEnvironment, TokenIds: bigint[]): Promise<BurnAndCrossParms> {
+    let parameter: BurnAndCrossParms = {
+        // chainselector，chain selector of dest chain
+        chainselector: "",
+        //  receiver: receiver address on dest chain(NFTPoolLockAndRelease address)
+        receiver: "",
+        //  tokenid: token ID to be crossed chain
+        tokeId: 0n
+    }
+    const tokenIdMessage = `Token ID to be crossed chain. Within the range of  ${TokenIds}:`
+    const answers = await inquirer.prompt([
+        {
+            type: "input",
+            name: "receiver",
+            message: "Receiver address on source chain(NFTPoolLockAndRelease address),it can obtained by running `npx hardhat deploy --tags nftlrAddr --network sepolia':",
+            validate: (input: string) =>
+                (input.length !== 0 && input.trim().length !== 0) || "Receiver(NFTPoolLockAndRelease address) is necessary ,it can obtained by running `npx hardhat deploy --tags nftlrAddr --network sepolia'"
+        },
+        {
+            type: "number",
+            name: "tokenid",
+            message: tokenIdMessage,
+            validate: (input) =>
+                // 查看输入值是否存在于TokenIds中
+                TokenIds.includes(BigInt(input as number)) ||
+                `tokenid must be within the range of ${TokenIds}`
+        }
+    ])
+
+    parameter.chainselector = networkConfig.get(env.network.chain.id)?.companionChainSelector as string
+    parameter.receiver = answers.receiver
+    parameter.tokeId = answers.tokenid;
+    return parameter
+}
+
 // get parameters of scripts/cross-chain/lock-and-cross.ts
 // 这个函数的作用：从外部获取代码执行时需要的参数
 // getLockAndCrossParmV1和getLockAndCrossParmV2的不同：在获取第一个参数是，如果终端输入为空，提示获取这个参数的命令不同，
@@ -119,20 +162,20 @@ export async function getLockAndCrossParmV1(env: EnhancedEnvironment, tokenidSta
 // params:可以处理id的范围tokenidStart---tokenIdEnd
 export async function getLockAndCrossParmV2(env: EnhancedEnvironment, tokenidStart: number, tokenIdEnd: number): Promise<lockAndCrossParms> {
     // 参数：chainselector，chain selector of dest chain
-    //  receiver: receiver address on dest chain
+    //  receiver: receiver address on dest chain(NFTPoolBurnAndMint address)
     //  tokenid: token ID to be crossed chain
 
     let parameter: lockAndCrossParms = {
         chainselector: "",
         receiver: "",
-        tokeId: 0
+        tokeId: 0n
     }
     const tokenIdMessage = `Token ID to be crossed chain. Within the range of  ${tokenidStart} to ${tokenIdEnd}:`
     const answers = await inquirer.prompt([
         {
             type: "input",
             name: "receiver",
-            message: "Receiver address on dest chain:",
+            message: "Receiver address(NFTPoolLockAndRelease address) on dest chain:",
             validate: (input: string) =>
                 (input.length !== 0 && input.trim().length !== 0) || "Receiver is necessary ,it can obtained by running `npx hardhat run scripts/cross-chain/NFTPoolBurnAndMintAddr.ts --network amoy'"
         },

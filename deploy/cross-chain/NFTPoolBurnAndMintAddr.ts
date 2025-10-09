@@ -14,9 +14,8 @@ export default deployScript(
         console.log("receiver address : ", NFTPoolBurnAndMintdeployment.address)
     },
     // dependencies，保证获取这个地址之前，这个合约被部署，如果没有部署，就会去部署
-    { tags: ["nftbm"], dependencies: ["destchain"] }
-
+    { tags: ["nftbmAddr"], dependencies: ["destchain"] }
 
 );
 
-// npx hardhat deploy --tags nftbm --network amoy
+// npx hardhat deploy --tags nftbmAddr --network amoy

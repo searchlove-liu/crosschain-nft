@@ -97,3 +97,9 @@ import "dotenv/config"
 // 导入env中的信息
 const apiKey = process.env.ETHERSCAN_API_KEY
 ```
+
+#### ccip chainLink 区块链浏览器
+https://ccip.chain.link/
+
+#### eth单位转换
+参考 https://learnblockchain.cn/ethers_v5/api/utils/display-logic/

@@ -6,7 +6,7 @@ export const checknft: HardhatPlugin = {
     id: 'checknft',
     tasks: [
         task('checknft', 'Check NFT in MyToken contract')
-            .setAction(() => import('../deploy/check-nft.ts'))
+            .setAction(() => import('../deploy/cross-chain/check-nft.ts'))
             .build(),
     ],
     npmPackage: 'checknft',

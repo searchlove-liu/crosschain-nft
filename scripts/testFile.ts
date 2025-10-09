@@ -1,5 +1,4 @@
 // npx node ./scripts/testFile.ts
-let chainselector: any
-chainselector = 20
-console.log("chainselector===null :", chainselector === null)
-console.log("chainselector===undefined :", chainselector === undefined)
+const st1: string = "0.01"
+const st2: string = "0.02"
+st1.localeCompare(st2)

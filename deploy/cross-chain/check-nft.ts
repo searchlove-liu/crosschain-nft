@@ -1,8 +1,5 @@
-// 需要插件@nomicfoundation/hardhat-toolbox-mocha-ethers
-import hre, { network } from "hardhat"
 import { Abi_MyToken } from "#generated/abis/MyToken.js";
 import { deployScript } from "#rocketh"
-import { MyToken } from "#generated/artifacts/index.js";
 
 // 部署合约
 export default deployScript(
