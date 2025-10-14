@@ -8,6 +8,7 @@ import {Client} from "@chainlink/contracts-ccip/contracts/libraries/Client.sol";
 import {CCIPReceiver} from "@chainlink/contracts-ccip/contracts/applications/CCIPReceiver.sol";
 import {IERC20} from "@chainlink/contracts/src/v0.8/vendor/openzeppelin-solidity/v4.8.3/contracts/token/ERC20/IERC20.sol";
 import {SafeERC20} from "@chainlink/contracts/src/v0.8/vendor/openzeppelin-solidity/v4.8.3/contracts/token/ERC20/utils/SafeERC20.sol";
+// 上面IERC20和SafeERC20是@chainlink/contracts1.3.0版本
 import {MyToken} from "./MyToken.sol";
 
 /**
@@ -40,10 +41,7 @@ contract NFTPoolLockAndRelease is CCIPReceiver, OwnerIsCreator {
     );
 
     // Event emitted when a message is received from another chain.
-    event TokenUnlocked(
-       address newOwner,
-       uint256 tokenId
-    );
+    event TokenUnlocked(address newOwner, uint256 tokenId);
 
     bytes32 private s_lastReceivedMessageId; // Store the last received messageId.
     string private s_lastReceivedText; // Store the last received text.
@@ -51,7 +49,7 @@ contract NFTPoolLockAndRelease is CCIPReceiver, OwnerIsCreator {
     IERC20 private s_linkToken;
     MyToken public nft;
 
-     struct requestData {
+    struct requestData {
         uint256 tokenId;
         address newOwner;
     }
@@ -123,7 +121,7 @@ contract NFTPoolLockAndRelease is CCIPReceiver, OwnerIsCreator {
     // contract a : func1 -> msg.sender
     // contract b : func2 -> msg.sender
     // call func1 of contract a , msg.sender = user's address
-    // call func2 ,then func2 call func1 , func1's msg.sender = contract b's address 
+    // call func2 ,then func2 call func1 , func1's msg.sender = contract b's address
     function lockAndSendNFT(
         uint256 tokenId,
         address newOwner,
@@ -142,7 +140,7 @@ contract NFTPoolLockAndRelease is CCIPReceiver, OwnerIsCreator {
 
         bytes memory payload = abi.encode(tokenId, newOwner);
         messageId = sendMessagePayLINK(chainSelector, receiver, payload);
-        tokenLocked[tokenId]=true;
+        tokenLocked[tokenId] = true;
         return messageId;
     }
 
@@ -150,14 +148,13 @@ contract NFTPoolLockAndRelease is CCIPReceiver, OwnerIsCreator {
     function _ccipReceive(
         Client.Any2EVMMessage memory any2EvmMessage
     ) internal override {
-
-// receive tokenId and newOwer
+        // receive tokenId and newOwer
         requestData memory rq = abi.decode(any2EvmMessage.data, (requestData));
         uint256 tokenId = rq.tokenId;
         address newOwner = rq.newOwner;
 
         // check if the NFT is locked
-        require(tokenLocked[tokenId],"The token is not locked");
+        require(tokenLocked[tokenId], "The token is not locked");
 
         // transfer token from this address to owner
         nft.transferFrom(address(this), newOwner, tokenId);

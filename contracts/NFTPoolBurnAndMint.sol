@@ -40,10 +40,7 @@ contract NFTPoolBurnAndMint is CCIPReceiver, OwnerIsCreator {
     );
 
     // Event emitted when a message is received from another chain.
-    event TokenMint(
-        address newOwner,
-        uint256 tokenId
-    );
+    event TokenMint(address newOwner, uint256 tokenId);
 
     bytes32 private s_lastReceivedMessageId; // Store the last received messageId.
     string private s_lastReceivedText; // Store the last received text.
@@ -129,7 +126,7 @@ contract NFTPoolBurnAndMint is CCIPReceiver, OwnerIsCreator {
         wnft.transferFrom(msg.sender, address(this), tokenId);
 
         // burn the nft befor send to ccip
-        wnft.burn(tokenId); 
+        wnft.burn(tokenId);
 
         bytes memory payload = abi.encode(tokenId, newOwner);
         messageId = sendMessagePayLINK(chainSelector, receiver, payload);
@@ -145,11 +142,9 @@ contract NFTPoolBurnAndMint is CCIPReceiver, OwnerIsCreator {
         uint256 tokenID = rq.tokenId;
         address newOwner = rq.newOwner;
 
-        wnft.mintTokenWithSpecificTokenId(newOwner,tokenID);
+        wnft.mintTokenWithSpecificTokenId(newOwner, tokenID);
 
-        emit TokenMint(
-            newOwner,tokenID
-        );
+        emit TokenMint(newOwner, tokenID);
     }
 
     /// @notice Construct a CCIP message.
