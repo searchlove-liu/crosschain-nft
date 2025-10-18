@@ -1,3 +1,19 @@
+#### import "hardhat/consol.sol";
+需要使用solidity hardhat插件，安装之后重启。
+
+#### 配置私密信息
+如果在同一个linux中某个之前项目已经配置过，且当前变量名和以前一致，可以不用在此配置。但需要和以前配置文件变量相同
+
+配置sepolia url，url可以来自alchemy：https://www.alchemy.com/
+npx hardhat keystore set SEPOLIA_RPC_URL
+
+配置私钥，可以来自metamask
+npx hardhat keystore set SEPOLIA_PRIVATE_KEY
+npx hardhat keystore set SEPOLIA_PRIVATE_KEY2
+
+配置api，可以来自etherscan
+npx hardhat keystore set ETHERSCAN_API_KEY
+
 ![alt text](image.png)
 #### sepolia部署
 ```shell
@@ -57,6 +73,7 @@ export default deployScript(
 tags不指定，将部署所有
 4、验证部署的所有合约：pnpm rocketh-verify -e sepolia etherscan
 ```
+
 ##### 直接本地部署
 ```shell
 npx hardhat compile

@@ -1,4 +1,6 @@
-// 在使用hardhat-deploy做跨链测试时，因为无法获取linkToken合约，所以没有完成，转成使用script来做跨链测试。
+// 在做合约测试的时候，会执行cross-chain中的所有脚本，包括README.但真实测试的时候这些代码不应该被执行。
+// 所以在执行test代码时，创建一个git分叉将cross-chain中的所有代码删除。然后测试，测试结束之后回到原版本。
+// 后期使用pluge来进行测试链的跨链测试。https://hardhat.org/plugin-development
 
 // #### 使用脚本做跨链测试：
 // 1、sepolia网络中部署MyToken和NFTPoolLockAndRelease
