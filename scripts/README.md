@@ -77,13 +77,13 @@ npx hardhat test
 ``` shell
 npx hardhat deploy --build-profile default --network sepolia
 npx hardhat deploy --build-profile default --network amoy
-验证部署的所有合约：pnpm rocketh-verify -e sepolia etherscan
+验证部署在sepolia的所有合约：pnpm rocketh-verify -e sepolia etherscan
 ```
 ##### 部署tags对应合约
 ``` shell
 npx hardhat deploy --tags xxx --build-profile default --network sepolia
 npx hardhat deploy --tags xxx --build-profile default --network amoy
-验证部署的所有合约：pnpm rocketh-verify -e sepolia etherscan
+验证部署在sepolia的所有合约：pnpm rocketh-verify -e sepolia etherscan
 ```
 
 如果某些脚本已经部署，再次执行命令将不执行部署脚本.
