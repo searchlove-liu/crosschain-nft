@@ -123,3 +123,12 @@ https://ccip.chain.link/
 
 #### eth单位转换
 参考 https://learnblockchain.cn/ethers_v5/api/utils/display-logic/
+
+#### ganache
+将ganache的地址改为127.0.0.1：8545，就可以将部署合约到ganache中了
+部署命令中npx hardhat --network localhost
+
+如果不想安装ganache，可以安装 @nomiclabs/hardhat-ganache
+https://learnblockchain.cn/docs/hardhat/guides/ganache-tests.html
+
+使用本地环境更好。

@@ -197,6 +197,48 @@ export async function getLockAndCrossParmV2(env: EnhancedEnvironment, tokenidSta
     return parameter
 }
 
+interface TransferLinkTokenParms {
+    from: string,
+    to: string,
+    chainId: number,
+}
+
+// 获取转移token相关参数
+export async function getTransferLinkTokenParms(): Promise<TransferLinkTokenParms> {
+    // 参数：chainselector，chain selector of dest chain
+    //  receiver: receiver address on dest chain(NFTPoolBurnAndMint address)
+    //  tokenid: token ID to be crossed chain
+
+    let parameter: TransferLinkTokenParms = {
+        from: "",
+        to: "",
+        chainId: 0
+    }
+    const answers = await inquirer.prompt([
+        {
+            type: "input",
+            name: "to",
+            message: "address of receiving linkToken:",
+            validate: (input: string) =>
+                (input.length !== 0 && input.trim().length !== 0) || "Receiver is necessary!"
+        },
+        {
+            type: "number",
+            name: "chainId",
+            message: "sepolia:11155111  ; amoy:80002 :",
+            // validate: (input) => (
+            //     // [(tokenidStart-1),(tokenidEnd+1)] = [tokenidStart,tokenidEnd]
+            //     Number(input) >= tokenidStart &&
+            //     Number(input) <= tokenIdEnd) ||
+            //     `chainId is necessary!`
+        }
+    ])
+
+    parameter.to = answers.to
+    parameter.chainId = answers.chainId
+    return parameter
+}
+
 export function getNetworkName(chainId: number): string {
     // 获取部署的网络
     let networkName: string | undefined;

@@ -38,7 +38,7 @@
     "dotenv": "^17.2.2",
     "ethers": "^6.15.0",
     "forge-std": "github:foundry-rs/forge-std#v1.9.4",
-    "hardhat": "^3.0.6",
+    "hardhat": "^3.0.9",
     "hardhat-deploy": "^2.0.0-next.45",
     "inquirer": "^12.9.6",
     "mocha": "^11.7.2",
